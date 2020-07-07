@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const PrimeraApp = ({ saludo, subtitulo }) => {
   return (
     <>
-      <h1>{saludo}</h1>
+      <h1>{saludo}!!</h1>
       {/* <pre>{ objectToCode(saludo) }</pre> */}
       <p>{subtitulo}</p>
     </>
