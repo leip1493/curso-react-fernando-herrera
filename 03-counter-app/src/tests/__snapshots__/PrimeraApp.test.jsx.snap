@@ -4,7 +4,7 @@ exports[`Pruebas en <PrimeraApp /> debe mostrar <PrimeraApp /> correctamente 1`]
 <Fragment>
   <h1>
     Hola Mundo
-     
+    !!
   </h1>
   <p>
     Soy un subtitulo
