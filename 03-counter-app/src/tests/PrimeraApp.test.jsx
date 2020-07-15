@@ -1,8 +1,8 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { shallow } from "enzyme";
-
 import PrimeraApp from "../PrimeraApp";
+
 describe("Pruebas en <PrimeraApp />", () => {
   // test('debe mostrar el mensaje "Hola Mundo"', () => {
   //   const saludo = "Hola Mundo";
@@ -16,7 +16,7 @@ describe("Pruebas en <PrimeraApp />", () => {
     const saludo = "Hola Mundo";
 
     const wrapper = shallow(<PrimeraApp saludo={saludo} />);
-
+    
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -28,9 +28,7 @@ describe("Pruebas en <PrimeraApp />", () => {
       <PrimeraApp saludo={saludo} subtitulo={subtitulo} />
     );
 
-    const textoParrafo = wrapper.find("p").text();
-
-    console.log(textoParrafo)
+    const textoParrafo = wrapper.find("p").text();   
 
     expect(textoParrafo).toBe(subtitulo);
   });
