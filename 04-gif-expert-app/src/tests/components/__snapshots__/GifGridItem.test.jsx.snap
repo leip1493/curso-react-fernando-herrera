@@ -4,7 +4,12 @@ exports[`<GifGridItem /> Debe renderizar correctamente 1`] = `
 <div
   className="card animate__animated animate__fadeIn"
 >
-  <img />
-  <p />
+  <img
+    alt="Title"
+    src="http://google.com/img.jpg"
+  />
+  <p>
+    Title
+  </p>
 </div>
 `;
