@@ -7,10 +7,11 @@ import ReactDOM from "react-dom";
 // import { FormWithCustomHook } from "./components/02-useEffect/FormWithCustomHook";
 // import { MultipleCustomHooks } from "./components/03-examples/MultipleCustomHooks";
 // import { FocusScreen } from "./components/04-useRef/FocusScreen";
-import { RealExampleRef } from "./components/04-useRef/RealExampleRef";
+// import { RealExampleRef } from "./components/04-useRef/RealExampleRef";
+import { Memorize } from "./components/06-memos/Memorize";
 
 ReactDOM.render(
-  <RealExampleRef />,
+  <Memorize />,
 
   document.getElementById("root")
 );
