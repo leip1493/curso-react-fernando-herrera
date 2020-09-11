@@ -3,9 +3,9 @@ import "./styles.css";
 import { todoReducer } from "./todoReducer";
 import { useForm } from "../../hooks/useForm";
 
-const init = () => {
-  return JSON.parse(localStorage.getItem("todos")) || [];
-};
+const init = () => JSON.parse(localStorage.getItem("todos")) || [];
+const addAction = (payload) => ({ type: "add", payload });
+const deleteAction = (payload) => ({ type: "delete", payload });
 
 export const TodoApp = () => {
   const [todos, dispatch] = useReducer(todoReducer, [], init);
@@ -28,14 +28,12 @@ export const TodoApp = () => {
       description,
       done: false,
     };
-
-    const action = {
-      type: "add",
-      payload: newTodo,
-    };
-
-    dispatch(action);
+    dispatch(addAction(newTodo));
     reset();
+  };
+
+  const handleDelete = (todoId) => {
+    dispatch(deleteAction(todoId));
   };
 
   return (
@@ -49,9 +47,14 @@ export const TodoApp = () => {
             {todos.map((todo, index) => (
               <li key={todo.id} className="list-group-item">
                 <p className="text-center">
-                  {index + 1}. {todo.description}
+                  {`${index + 1}. ${todo.description}`}
                 </p>
-                <button className="btn btn-danger">Borrar</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleDelete(todo.id)}
+                >
+                  Borrar
+                </button>
               </li>
             ))}
           </ul>
