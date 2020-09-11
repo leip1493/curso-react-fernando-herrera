@@ -1,25 +1,31 @@
-import React from "react";
+import React, { useReducer, useEffect } from "react";
 import "./styles.css";
-import { useReducer } from "react";
 import { todoReducer } from "./todoReducer";
+import { useForm } from "../../hooks/useForm";
 
-const initialState = [
-  {
-    id: new Date().getTime(),
-    description: "Aprender React",
-    done: false,
-  },
-];
+const init = () => {
+  return JSON.parse(localStorage.getItem("todos")) || [];
+};
 
 export const TodoApp = () => {
-  const [todos, dispatch] = useReducer(todoReducer, initialState);
+  const [todos, dispatch] = useReducer(todoReducer, [], init);
+
+  const [{ description }, handleInputChange, reset] = useForm({
+    description: "",
+  });
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (description.trim().length === 0) return;
+
     const newTodo = {
       id: new Date().getTime(),
-      description: "Nueva tarea",
+      description,
       done: false,
     };
 
@@ -29,6 +35,7 @@ export const TodoApp = () => {
     };
 
     dispatch(action);
+    reset();
   };
 
   return (
@@ -60,6 +67,8 @@ export const TodoApp = () => {
               name="description"
               placeholder="Aprender ..."
               autoComplete="off"
+              onChange={handleInputChange}
+              value={description}
             />
             <button
               className="btn btn-outline-primary btn-block mt-1"
