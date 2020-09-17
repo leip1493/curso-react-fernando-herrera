@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 
-export const useFetch = url => {
+export const useFetch = (url) => {
   const isMounted = useRef(true);
 
   const [state, setstate] = useState({
     data: null,
     loading: true,
-    error: null
+    error: null,
   });
 
   useEffect(() => {
@@ -19,18 +19,25 @@ export const useFetch = url => {
     setstate({
       data: null,
       loading: true,
-      error: null
+      error: null,
     });
 
     fetch(url)
-      .then(resp => resp.json())
-      .then(data => {
+      .then((resp) => resp.json())
+      .then((data) => {
         isMounted.current &&
           setstate({
             loading: false,
             error: null,
-            data
+            data,
           });
+      })
+      .catch(() => {
+        setstate({
+          data: null,
+          loading: false,
+          error: "No se pudo cargar la info",
+        });
       });
   }, [url]);
 
